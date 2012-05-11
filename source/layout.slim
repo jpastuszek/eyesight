@@ -1,0 +1,47 @@
+doctype html
+html lang="pl"
+  head
+    meta charset="utf-8"
+    meta name="keywords" content="template language"
+    title EyeSight Vision Test
+
+    == stylesheet_link_tag 'bootstrap.css'
+    == stylesheet_link_tag 'bootstrap-responsive.css'
+
+    sass:
+      body
+        padding-top: 60px
+        padding-bottom: 40px
+
+    /[if lt IE 9]
+      script src="http://html5shim.googlecode.com/svn/trunk/html5.js"
+
+    link rel="shortcut icon" href="favicon.ico"
+
+    == yield_content :head
+  body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container
+          a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse"
+            span.icon-bar
+          == link_to 'EyeSight', 'index.html', class: 'brand'
+          .nav-collapse
+            ul.nav
+              li.active
+                == link_to 'Test', 'test.html'
+
+    .container
+      h1 Hello world
+
+      hr
+
+      == yield
+
+      hr
+
+      footer Copyright &copy; 2012 Jakub Pastuszek
+      
+    == javascript_include_tag 'jquery'
+    == javascript_include_tag 'bootstrap'
+
