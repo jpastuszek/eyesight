@@ -22,30 +22,38 @@
       li Po kliknięciu, obok tarczy, pojawi się informacja opisująca wynik badania.
 
 .row
-  .span12
-    .accordion#plates
-        - (1..24).each do |plate|
-          javascript:
-            $(document).ready(function (){
-                $("#plate#{plate}").on('shown', function() {
-                    console.log($("#plate-tab#{plate}"))
-                    $('html, body').animate({
-                        scrollTop: $("#plate-tab#{plate}").offset().top - 100
-                         }, 200);
-                });
+  .span16
+    .accordion.container#plates
+      - (1..24).each do |plate|
+        javascript:
+          $(document).ready(function() {
+            $("#plate#{plate}").on('shown', function() {
+              $('html, body').animate({
+                scrollTop: $("#plate#{plate}").offset().top - 140
+              }, 200);
             });
 
-          .accordion-group id="plate-tab#{plate}"
-            .accordion-heading
-              a.accordion-toggle data-toggle='collapse' data-parent='#plates' href='#plate#{plate}'
-                h3 Tarcza #{plate}
-            .collapse id="plate#{plate}"
-              .accordion-inner
-                .row
-                  .span4
-                    ' &nbsp;
-                  .span4
-                    == image_tag "ishinary/plate#{plate}.gif"
-                  .span4
-                    ' &nbsp;
+            $("#plate-image#{plate}").on('click', function() {
+              $("#plate-image#{plate}").hide();
+              $("#plate-answare#{plate}").show();
+            });
+
+            $("#plate-answare#{plate}").on('click', function() {
+              $("#plate-answare#{plate}").hide();
+              $("#plate-image#{plate}").show();
+            });
+          });
+
+        .accordion-group.row
+          .accordion-heading
+            a.accordion-toggle data-toggle='collapse' data-parent='#plates' href='#plate#{plate}'
+              h3 Tarcza #{plate}
+          .collapse id="plate#{plate}"
+            .accordion-inner
+              .span4 test
+              .span4 id="plate-image#{plate}"
+                == image_tag "ishinary/plate#{plate}.gif"
+              .span4 id="plate-answare#{plate}" style='display: none'
+                == image_tag "ishinary/plate#{plate}a.gif"
+              .span4 test
 
