@@ -15,6 +15,7 @@ html lang="pl"
 
     /[if lt IE 9]
       script src="http://html5shim.googlecode.com/svn/trunk/html5.js"
+    == javascript_include_tag 'jquery'
 
     link rel="shortcut icon" href="favicon.ico"
 
@@ -29,19 +30,24 @@ html lang="pl"
           .nav-collapse
             ul.nav
               li.active
-                == link_to 'Test', 'test.html'
+                == link_to 'Testy wzroku', 'index.html'
 
     .container
-      h1 Hello world
+      header
+        == yield_content :title
+        hr
 
-      hr
+      article
+        == yield
 
-      == yield
-
-      hr
-
-      footer Copyright &copy; 2012 Jakub Pastuszek
+      footer
+        hr
+        .row
+          .span6
+            ' Copyright &copy; 2012 Jakub Pastuszek
+          .span6
+            .pull-right
+              == yield_content :footer
       
-    == javascript_include_tag 'jquery'
     == javascript_include_tag 'bootstrap'
 

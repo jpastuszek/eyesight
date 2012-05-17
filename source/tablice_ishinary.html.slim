@@ -1,0 +1,51 @@
+- content_for :title do
+  h1 Tablice Ishihary
+
+- content_for :footer do
+  ' Na podstawie testów ze strony:
+  a href='http://www.colour-blindness.com/colour-blindness-tests/ishihara-colour-test-plates/' Colour-Blindness.com
+
+.row
+  .span6
+    h3 O teście
+    p Tarcze 1 - 17 zawierają liczby, tarcze 18 - 24 zawierają jeden lub dwa szlaczki.
+    p By zdać każdy z testów musisz prawidłowo zidentyfikować liczbę lub prześledzić szlaczki.
+  .span6
+    h3 Instrukcja
+    ol
+      li Siądź około 75 centymetrów od monitora, tak aby tarcze były na wysokości wzroku.
+      li Zalecamy delikatne naturalne oświetlenie pomieszczenia tak aby nie było odbić od ekranu. Nienaturalnie oświetlenie i odbicia mogą wpłynąć na kolory przedstawionych tarcz.
+      li 
+        ' Sprubuj zidentyfikować liczbę lub szlaczek w przeciągu 5 sekund, następnie
+        strong kliknij na tarczę
+        ' .
+      li Po kliknięciu, obok tarczy, pojawi się informacja opisująca wynik badania.
+
+.row
+  .span12
+    .accordion#plates
+        - (1..24).each do |plate|
+          javascript:
+            $(document).ready(function (){
+                $("#plate#{plate}").on('shown', function() {
+                    console.log($("#plate-tab#{plate}"))
+                    $('html, body').animate({
+                        scrollTop: $("#plate-tab#{plate}").offset().top - 100
+                         }, 200);
+                });
+            });
+
+          .accordion-group id="plate-tab#{plate}"
+            .accordion-heading
+              a.accordion-toggle data-toggle='collapse' data-parent='#plates' href='#plate#{plate}'
+                h3 Tarcza #{plate}
+            .collapse id="plate#{plate}"
+              .accordion-inner
+                .row
+                  .span4
+                    ' &nbsp;
+                  .span4
+                    == image_tag "ishinary/plate#{plate}.gif"
+                  .span4
+                    ' &nbsp;
+
