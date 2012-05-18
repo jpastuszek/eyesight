@@ -32,6 +32,10 @@
                 scrollTop: $("#plate#{plate}").offset().top - 160
               }, 200);
             });
+            $("#plate#{plate} .answares a").on('click', function() {
+              $("#plate#{plate} .answares li").removeClass('active')
+              $(this).parent('li').addClass('active')
+            })
 
             /*
             $("#plate-image#{plate}").on('click', function() {
@@ -44,6 +48,7 @@
               $("#plate-image#{plate}").show();
             });
             */
+
           });
 
         .row
@@ -55,14 +60,18 @@
           .row id="plate-image#{plate}"
             .span4 &nbsp;
             .span4
-              == image_tag "ishinary/plate#{plate}.gif"
+              ul.thumbnails
+                li.span4
+                  .thumbnail
+                    == image_tag "ishinary/plate#{plate}.gif"
+                    hr
+                    h5 Co widzisz?
+                    ul.nav.nav-pills.nav-stacked.answares
+                      li
+                        a Liczbe 12
+                      li 
+                        a Nic
             .span4
-              h3 Co widzisz?
-              ul.nav.nav-pills.nav-stacked
-                li
-                  a Liczbe 12
-                li 
-                  a Nic
 
           .row id="plate-answare#{plate}" style='display: none'
             .span4 &nbsp;
