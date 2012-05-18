@@ -21,17 +21,39 @@
         ' .
       li Po kliknięciu, obok tarczy, pojawi się informacja opisująca wynik badania.
 
+javascript:
+  var answares = [
+    { 
+      'Liczbe 12': 'Wszyscy ludzie powinnin widzieć liczbe 12, nawet ci którzy mają problemy z prawidłowym widzeniem kolorów.',
+      'Nic': 'Na prawde nie widzisz tej dwunastki?! :)'
+    },
+    {
+      'Liczbe 8': 'Ci którzy nie mają problemu z widzeniem kolorów widzą liczbe 8',
+      'Liczbe 3': 'Ci którzy mają ślepotę na kolory czerwony i zielony widzą liczbe 3',
+      'Nic': 'Ci którzy mają całkowitą ślepotę na kolory nie widzą żadnej liczby'
+    }
+  ]
+
 .row
   .span16
     #plates
       - (1..24).each do |plate|
         javascript:
           $(document).ready(function() {
+            // Centering view on the shown plate
             $("#plate#{plate}").on('shown', function() {
               $('html, body').animate({
                 scrollTop: $("#plate#{plate}").offset().top - 160
               }, 200);
             });
+            // Setting up answares
+            var question_list = $("#plate#{plate} .answares")
+            var answare_set = answares[#{plate-1}]
+            for (var question in answare_set) {
+              question_list.append("<li><a>" + question)
+            }
+
+            // Selecting answares
             $("#plate#{plate} .answares a").on('click', function() {
               $("#plate#{plate} .answares li").removeClass('active')
               $(this).parent('li').addClass('active')
@@ -66,11 +88,7 @@
                     == image_tag "ishinary/plate#{plate}.gif"
                     hr
                     h5 Co widzisz?
-                    ul.nav.nav-pills.nav-stacked.answares
-                      li
-                        a Liczbe 12
-                      li 
-                        a Nic
+                    ul.nav.nav-pills.nav-stacked.answares style="cursor: pointer"
             .span4
 
           .row id="plate-answare#{plate}" style='display: none'
