@@ -28,9 +28,9 @@ javascript:
       'Nic': 'Na prawde nie widzisz tej dwunastki?! :)'
     },
     {
-      'Liczbe 8': 'Ci którzy nie mają problemu z widzeniem kolorów widzą liczbe 8',
-      'Liczbe 3': 'Ci którzy mają ślepotę na kolory czerwony i zielony widzą liczbe 3',
-      'Nic': 'Ci którzy mają całkowitą ślepotę na kolory nie widzą żadnej liczby'
+      'Liczbe 8': 'Ci którzy nie mają problemu z widzeniem kolorów widzą liczbe 8.',
+      'Liczbe 3': 'Ci którzy mają ślepotę na kolory czerwony i zielony widzą liczbe 3.',
+      'Nic': 'Ci którzy mają całkowitą ślepotę na kolory nie widzą żadnej liczby.'
     }
   ]
 
@@ -67,7 +67,7 @@ javascript:
               //console.log(description)
 
               $("#answare#{plate}").contents().remove()
-              $("#answare#{plate}").append("Twoja odpwieź: " + answare)
+              $("#answare#{plate}").append("Widiałeś: " + answare)
 
               $("#description#{plate}").contents().remove()
               $("#description#{plate}").append(description)
@@ -125,5 +125,5 @@ javascript:
                       == image_tag "ishinary/plate#{plate}.gif"
                       dl
                         dt id="answare#{plate}" Nie wybrano odpowiedzi
-                        dd id="description#{plate}" Wróć do tarcy #{plate} i wybierz odpowiedź.
+                        dd id="description#{plate}" Wróć do tarczy #{plate} i wybierz odpowiedź.
 
