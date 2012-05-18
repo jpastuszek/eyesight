@@ -46,9 +46,11 @@ javascript:
                 scrollTop: $("#plate#{plate}").offset().top - 160
               }, 200);
             });
+
             // Setting up answares
             var question_list = $("#plate#{plate} .answares")
             var answare_set = answares[#{plate-1}]
+
             for (var question in answare_set) {
               question_list.append("<li><a>" + question)
             }
@@ -57,6 +59,18 @@ javascript:
             $("#plate#{plate} .answares a").on('click', function() {
               $("#plate#{plate} .answares li").removeClass('active')
               $(this).parent('li').addClass('active')
+
+              var answare = $(this).text()
+              var description = answare_set[answare]
+
+              //console.log(answare)
+              //console.log(description)
+
+              $("#answare#{plate}").contents().remove()
+              $("#answare#{plate}").append("Twoja odpwieź: " + answare)
+
+              $("#description#{plate}").contents().remove()
+              $("#description#{plate}").append(description)
             })
 
             /*
@@ -70,7 +84,6 @@ javascript:
               $("#plate-image#{plate}").show();
             });
             */
-
           });
 
         .row
@@ -96,4 +109,21 @@ javascript:
             .span4
               == image_tag "ishinary/plate#{plate}a.gif"
             .span4 test
+
+      .row
+        .span12
+          hr
+          a.accordion-toggle data-toggle='collapse' data-parent='#plates' href='#plate-results' style='outline: 0'
+            h2 Wyniki
+      .row.span12.collapse id="plate-results"
+          - (1..24).to_a.each_slice(4) do |row|
+            ul.thumbnails.row
+              - row.each do |plate|
+                  li.span3
+                    .thumbnail
+                      h5 Tarcza #{plate}
+                      == image_tag "ishinary/plate#{plate}.gif"
+                      dl
+                        dt id="answare#{plate}" Nie wybrano odpowiedzi
+                        dd id="description#{plate}" Wróć do tarcy #{plate} i wybierz odpowiedź.
 
