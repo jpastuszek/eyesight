@@ -23,16 +23,17 @@
 
 .row
   .span16
-    .accordion.container#plates
+    #plates
       - (1..24).each do |plate|
         javascript:
           $(document).ready(function() {
             $("#plate#{plate}").on('shown', function() {
               $('html, body').animate({
-                scrollTop: $("#plate#{plate}").offset().top - 140
+                scrollTop: $("#plate#{plate}").offset().top - 160
               }, 200);
             });
 
+            /*
             $("#plate-image#{plate}").on('click', function() {
               $("#plate-image#{plate}").hide();
               $("#plate-answare#{plate}").show();
@@ -42,18 +43,30 @@
               $("#plate-answare#{plate}").hide();
               $("#plate-image#{plate}").show();
             });
+            */
           });
 
-        .accordion-group.row
-          .accordion-heading
-            a.accordion-toggle data-toggle='collapse' data-parent='#plates' href='#plate#{plate}'
-              h3 Tarcza #{plate}
-          .collapse id="plate#{plate}"
-            .accordion-inner
-              .span4 test
-              .span4 id="plate-image#{plate}"
-                == image_tag "ishinary/plate#{plate}.gif"
-              .span4 id="plate-answare#{plate}" style='display: none'
-                == image_tag "ishinary/plate#{plate}a.gif"
-              .span4 test
+        .row
+          .span12
+            hr
+            a.accordion-toggle data-toggle='collapse' data-parent='#plates' href='#plate#{plate}' style='outline: 0'
+              h2 Tarcza #{plate}
+        .row.collapse id="plate#{plate}"
+          .row id="plate-image#{plate}"
+            .span4 &nbsp;
+            .span4
+              == image_tag "ishinary/plate#{plate}.gif"
+            .span4
+              h3 Co widzisz?
+              ul.nav.nav-pills.nav-stacked
+                li
+                  a Liczbe 12
+                li 
+                  a Nic
+
+          .row id="plate-answare#{plate}" style='display: none'
+            .span4 &nbsp;
+            .span4
+              == image_tag "ishinary/plate#{plate}a.gif"
+            .span4 test
 
