@@ -78,14 +78,20 @@
           .span12
             .row
               .span6
-                h3 O wynikach
-                p Poniżej pokazane są tarcze o widocznych prawidłowych rozwiązaniach.
+                h3 Wynik badania
+                p Znajdujące się poniżej tarcze ukazują prawidłowy wzór jaki powinna widzieć osoba bez problemów z widzeniem kolorów.
               .span6
-                h3 Kolory tarcz
+                h3 Oznaczenia
                 ol
-                  ul Tarcze zaznaczone na zielono zostały prawidłowo rozwiązane.
-                  ul Tarcze zaznaczone na niebiesko zawierają opis problemu.
-                  ul Tarcze nie zaznaczone kolorem nie mają zaznaczonych odpowiedzi, wroć do tych tarcz i zaznacz odpowiedź aby uzyskać wyniki.
+                  ul 
+                    i.icon-ok
+                    '  Tarcze prawidłowo rozpoznane
+                  ul 
+                    i.icon-remove
+                    '  Tarcze nieprawidłowo rozpoznane - zawierają opis problemu
+                  ul 
+                    i.icon-repeat
+                    '  Tarcze bez zaznaczonej odpowiedzi
             .row
               .span12
                 hr
@@ -99,7 +105,11 @@
                       == image_tag "ishinary/plate#{plate}a.gif", id: "result-image-answare#{plate}", style: 'display: none'
                       hr
                       dl
-                        dt id="result-answare#{plate}" Nie wybrano odpowiedzi
+                        dt
+                          i.icon-repeat id="result-icon#{plate}"
+                          ' &nbsp;
+                          span id="result-answare#{plate}" 
+                            '  Nie wybrano odpowiedzi
                         dd id="result-description#{plate}" 
                           p
                             ul.pager
@@ -108,7 +118,6 @@
                                   i.icon-arrow-left
                                   '  Wróć do tarczy #{plate}
                   javascript:
-                    console.log($("#result-back#{plate}"))
                     $("#result-back#{plate}").on('click', function() {
                       nav_to("#{plate}")
                     })
@@ -128,15 +137,6 @@
 javascript:
   // Navigation helper
   function nav_to(tab) {
-    console.log('nave to: ' + tab)
-    /*
-    console.log($(".tab-pane"))
-    console.log($(".nav-tabs li"))
-
-    console.log($("#tab-" + tab))
-    console.log($("#pane-" + tab))
-    */
-
     $(".tab-pane").removeClass('active')
     $(".nav-tabs li").removeClass('active')
 
@@ -174,14 +174,21 @@ javascript:
         var status =  answare_set[answare].status
 
         $("#result-answare#{plate}").contents().remove()
-        $("#result-answare#{plate}").append("Widiałeś: " + answare)
+        $("#result-answare#{plate}").append("Widziałeś: " + answare)
 
         $("#result-description#{plate}").contents().remove()
         $("#result-description#{plate}").append(description)
 
+        $("#result-icon#{plate}").removeClass('icon-repeat icon-ok icon-remove')
+        if (status == 'success')
+          $("#result-icon#{plate}").addClass('icon-ok')
+        if (status == 'error' || status == 'info')
+          $("#result-icon#{plate}").addClass('icon-remove')
+
         $("#result#{plate}").removeClass("alert alert-error alert-success alert-info")
-        if (status == 'error' || status == 'success' || status == 'info')
+        if (status == 'error' || status == 'success' || status == 'info') {
           $("#result#{plate}").addClass("alert alert-" + status)
+        }
 
         $("#result-image#{plate}").hide();
         $("#result-image-answare#{plate}").show();
