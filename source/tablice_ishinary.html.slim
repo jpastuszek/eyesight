@@ -21,19 +21,6 @@
         ' .
       li Po kliknięciu, obok tarczy, pojawi się informacja opisująca wynik badania.
 
-javascript:
-  var answares = [
-    { 
-      'Liczbe 12': 'Wszyscy ludzie powinnin widzieć liczbe 12, nawet ci którzy mają problemy z prawidłowym widzeniem kolorów.',
-      'Nic': 'Na prawde nie widzisz tej dwunastki?! :)'
-    },
-    {
-      'Liczbe 8': 'Ci którzy nie mają problemu z widzeniem kolorów widzą liczbe 8.',
-      'Liczbe 3': 'Ci którzy mają ślepotę na kolory czerwony i zielony widzą liczbe 3.',
-      'Nic': 'Ci którzy mają całkowitą ślepotę na kolory nie widzą żadnej liczby.'
-    }
-  ]
-
 .row
   .span16
     #plates
@@ -61,29 +48,24 @@ javascript:
               $(this).parent('li').addClass('active')
 
               var answare = $(this).text()
-              var description = answare_set[answare]
+              var description = answare_set[answare].description
+              var status =  answare_set[answare].status
 
               //console.log(answare)
-              //console.log(description)
+              console.log($("#result#{plate}"))
 
-              $("#answare#{plate}").contents().remove()
-              $("#answare#{plate}").append("Widiałeś: " + answare)
+              $("#result-answare#{plate}").contents().remove()
+              $("#result-answare#{plate}").append("Widiałeś: " + answare)
 
-              $("#description#{plate}").contents().remove()
-              $("#description#{plate}").append(description)
+              $("#result-description#{plate}").contents().remove()
+              $("#result-description#{plate}").append(description)
+
+              if (status == 'error' || status == 'success' || status == 'info')
+                $("#result#{plate}").addClass("alert alert-" + status)
+
+              $("#result-image#{plate}").hide();
+              $("#result-image-answare#{plate}").show();
             })
-
-            /*
-            $("#plate-image#{plate}").on('click', function() {
-              $("#plate-image#{plate}").hide();
-              $("#plate-answare#{plate}").show();
-            });
-
-            $("#plate-answare#{plate}").on('click', function() {
-              $("#plate-answare#{plate}").hide();
-              $("#plate-image#{plate}").show();
-            });
-            */
           });
 
         .row
@@ -92,7 +74,7 @@ javascript:
             a.accordion-toggle data-toggle='collapse' data-parent='#plates' href='#plate#{plate}' style='outline: 0'
               h2 Tarcza #{plate}
         .row.collapse id="plate#{plate}"
-          .row id="plate-image#{plate}"
+          .row
             .span4 &nbsp;
             .span4
               ul.thumbnails
@@ -102,13 +84,7 @@ javascript:
                     hr
                     h5 Co widzisz?
                     ul.nav.nav-pills.nav-stacked.answares style="cursor: pointer"
-            .span4
-
-          .row id="plate-answare#{plate}" style='display: none'
             .span4 &nbsp;
-            .span4
-              == image_tag "ishinary/plate#{plate}a.gif"
-            .span4 test
 
       .row
         .span12
@@ -120,10 +96,14 @@ javascript:
             ul.thumbnails.row
               - row.each do |plate|
                   li.span3
-                    .thumbnail
+                    .thumbnail id="result#{plate}"
                       h5 Tarcza #{plate}
-                      == image_tag "ishinary/plate#{plate}.gif"
+                      == image_tag "ishinary/plate#{plate}.gif", id: "result-image#{plate}"
+                      == image_tag "ishinary/plate#{plate}a.gif", id: "result-image-answare#{plate}", style: 'display: none'
+                      hr
                       dl
-                        dt id="answare#{plate}" Nie wybrano odpowiedzi
-                        dd id="description#{plate}" Wróć do tarczy #{plate} i wybierz odpowiedź.
+                        dt id="result-answare#{plate}" Nie wybrano odpowiedzi
+                        dd id="result-description#{plate}" Wróć do tarczy #{plate} i wybierz odpowiedź.
+
+== javascript_include_tag 'tablice_ishinary_pytania'
 
