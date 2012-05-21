@@ -27,7 +27,7 @@
           // Centering view on the shown plate
           $("#plate#{plate}").on('shown', function() {
             $('html, body').animate({
-              scrollTop: $("#plate#{plate}").offset().top - 160
+              scrollTop: $("#plate#{plate}").offset().top - 140
             }, 200);
           });
 
@@ -71,13 +71,11 @@
       .row.collapse id="plate#{plate}"
         .span4 &nbsp;
         .span4
-          ul.thumbnails
-            li.span4
-              .thumbnail
-                == image_tag "ishinary/plate#{plate}.gif"
-                hr
-                h5 Co widzisz?
-                ul.nav.nav-pills.nav-stacked.answares style="cursor: pointer"
+          .thumbnail
+            == image_tag "ishinary/plate#{plate}.gif"
+            hr
+            h5 Co widzisz?
+            ul.nav.nav-pills.nav-stacked.answares style="cursor: pointer"
         .span4 &nbsp;
 
     .row
