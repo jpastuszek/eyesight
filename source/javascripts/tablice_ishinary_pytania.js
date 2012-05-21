@@ -226,11 +226,11 @@ var answares = [
     },
   },
   {  // 20
-    'Brak wyraźnego szlaczka': {
+    'Wijący się szlaczek': {
       'description': 'Ci którzy nie mają problemu z widzeniem kolorów powinni być w stanie prześledzić wijący się zielony szlaczek',
       'status': 'success'
     },
-    'Wijący się szlaczek': {
+    'Brak wyraźnego szlaczka': {
       'description': 'Większość ludzi z jakąklowiek ślepotą na kolory nie powinni być w stanie prześledzić szlacza',
       'status': 'info'
     },

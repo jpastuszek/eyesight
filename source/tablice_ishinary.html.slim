@@ -60,6 +60,7 @@
               $("#result-description#{plate}").contents().remove()
               $("#result-description#{plate}").append(description)
 
+              $("#result#{plate}").removeClass("alert alert-error alert-success alert-info")
               if (status == 'error' || status == 'success' || status == 'info')
                 $("#result#{plate}").addClass("alert alert-" + status)
 
