@@ -4,7 +4,7 @@
       'description': 'Wszyscy ludzie powinni widzieć liczbę 12, nawet ci którzy mają problemy z prawidłowym widzeniem kolorów.',
       'status': 'success'
     },
-    'Nic': {
+    'Brak wyraźnej liczby': {
       'description': 'Na prawdę nie widzisz tej dwunastki?! :)',
       'status': 'info'
     }
@@ -18,7 +18,7 @@
       'description': 'Ci którzy mają ślepotę na kolory czerwony i zielony widzą liczbę 3.',
       'status': 'info'
     },
-    'Nic': {
+    'Brak wyraźnej liczby': {
       'description': 'Ci którzy mają całkowitą ślepotę na kolory nie widzą żadnej liczby.',
       'status': 'info'
     }
@@ -32,7 +32,7 @@
       'description': 'Ci którzy mają ślepotę na kolor czerwony i zielony widzą liczbę 70',
       'status': 'info'
     },
-    'Nic': {
+    'Brak wyraźnej liczby': {
       'description': 'Ci którzy mają całkowitą ślepotę na kolory nie widzą żadnej liczby.',
       'status': 'info'
     }
@@ -46,7 +46,7 @@
       'description': 'Ci którzy mają ślepotę na kolor czerwony i zielony widzą liczbę 2',
       'status': 'info'
     },
-    'Nic': {
+    'Brak wyraźnej liczby': {
       'description': 'Ci którzy mają całkowitą ślepotę na kolory nie widzą żadnej liczby.',
       'status': 'info'
     }
@@ -60,7 +60,7 @@
       'description': 'Ci którzy mają ślepotę na kolor czerwony i zielony widzą liczbę 5',
       'status': 'info'
     },
-    'Nic': {
+    'Brak wyraźnej liczby': {
       'description': 'Ci którzy mają całkowitą ślepotę na kolory nie widzą żadnej liczby.',
       'status': 'info'
     }
@@ -74,7 +74,7 @@
       'description': 'Ci którzy mają ślepotę na kolor czerwony i zielony widzą liczbę 17',
       'status': 'info'
     },
-    'Nic': {
+    'Brak wyraźnej liczby': {
       'description': 'Ci którzy mają całkowitą ślepotę na kolory nie widzą żadnej liczby.',
       'status': 'info'
     }
@@ -88,7 +88,7 @@
       'description': 'Ci którzy mają ślepotę na kolor czerwony i zielony widzą liczbę 21',
       'status': 'info'
     },
-    'Nic': {
+    'Brak wyraźnej liczby': {
       'description': 'Ci którzy mają całkowitą ślepotę na kolory nie widzą żadnej liczby.',
       'status': 'info'
     }
@@ -98,7 +98,7 @@
       'description': 'Ci którzy nie mają problemu z widzeniem kolorów widzą liczbę 6.',
       'status': 'success'
     },
-    'Nic': {
+    'Brak wyraźnej liczby': {
       'description': 'Większość ludzi którzy mają ślepotę na kolory nie widzi numeru wyraźnie.',
       'status': 'info'
     }
@@ -108,7 +108,7 @@
       'description': 'Ci którzy nie mają problemu z widzeniem kolorów widzą liczbę 45.',
       'status': 'success'
     },
-    'Nic': {
+    'Brak wyraźnej liczby': {
       'description': 'Większość ludzi którzy mają ślepotę na kolory nie widzi numeru wyraźnie.',
       'status': 'info'
     }
@@ -118,7 +118,7 @@
       'description': 'Ci którzy nie mają problemu z widzeniem kolorów widzą liczbę 5.',
       'status': 'success'
     },
-    'Nic': {
+    'Brak wyraźnej liczby': {
       'description': 'Większość ludzi którzy mają ślepotę na kolory nie widzi numeru wyraźnie.',
       'status': 'info'
     }
@@ -128,7 +128,7 @@
       'description': 'Ci którzy nie mają problemu z widzeniem kolorów widzą liczbę 7.',
       'status': 'success'
     },
-    'Nic': {
+    'Brak wyraźnej liczby': {
       'description': 'Większość ludzi którzy mają ślepotę na kolory nie widzi numeru wyraźnie.',
       'status': 'info'
     }
@@ -138,7 +138,7 @@
       'description': 'Ci którzy nie mają problemu z widzeniem kolorów widzą liczbę 16.',
       'status': 'success'
     },
-    'Nic': {
+    'Brak wyraźnej liczby': {
       'description': 'Większość ludzi którzy mają ślepotę na kolory nie widzi numeru wyraźnie.',
       'status': 'info'
     }
@@ -148,13 +148,13 @@
       'description': 'Ci którzy nie mają problemu z widzeniem kolorów widzą liczbę 73.',
       'status': 'success'
     },
-    'Nic': {
+    'Brak wyraźnej liczby': {
       'description': 'Większość ludzi którzy mają ślepotę na kolory nie widzi numeru wyraźnie.',
       'status': 'info'
     }
   },
   {  // 14
-    'Nic': {
+    'Brak wyraźnej liczby': {
       'description': 'Ci którzy mają całkowitą ślepotę na kolory bądź widzą normalnie nie widzą żadnej liczby.',
       'status': 'success'
     },
@@ -164,7 +164,7 @@
     }
   },
   {  // 15
-    'Nic': {
+    'Brak wyraźnej liczby': {
       'description': 'Ci którzy mają całkowitą ślepotę na kolory bądź widzą normalnie nie widzą żadnej liczby.',
       'status': 'success'
     },
@@ -278,7 +278,7 @@
       'description': 'Wszyscy powinni widzieć ten szlaczek!',
       'status': 'success'
     },
-    'Nic': {
+    'Brak wyraźnego szlaczka': {
       'description': 'Na prawdę nie widzisz tego szlaczka?! :)',
       'status': 'info'
     },
