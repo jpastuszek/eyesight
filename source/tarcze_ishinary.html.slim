@@ -35,7 +35,7 @@
                   li Wybierz numer kolejnej tarczy i kontynuuj test aż do ostatniej tarczy.
                   li Przejdź do wyników gdy już zaznaczysz odpowiedzi dla wszystkich tarcz.
                 .alert.alert-info
-                  strong Nawigacja
+                  h4.alert-heading Nawigacja
                   ul
                     li Zawsze możesz wrócić do tej instrukcji, dowolnej tarczy i wyników
                     li Przeładuj stronę aby rozpocząć od nowa
@@ -92,21 +92,33 @@
             - (1..24).to_a.each_slice(4) do |row|
               ul.thumbnails.row
                 - row.each do |plate|
-                    li.span3
-                      .thumbnail id="result#{plate}"
-                        h5 Tarcza #{plate}
-                        == image_tag "ishinary/plate#{plate}.gif", id: "result-image#{plate}"
-                        == image_tag "ishinary/plate#{plate}a.gif", id: "result-image-answare#{plate}", style: 'display: none'
-                        hr
-                        dl
-                          dt id="result-answare#{plate}" Nie wybrano odpowiedzi
-                          dd id="result-description#{plate}" Wróć do tarczy #{plate} i wybierz odpowiedź.
+                  li.span3
+                    .thumbnail id="result#{plate}"
+                      h5 Tarcza #{plate}
+                      == image_tag "ishinary/plate#{plate}.gif", id: "result-image#{plate}"
+                      == image_tag "ishinary/plate#{plate}a.gif", id: "result-image-answare#{plate}", style: 'display: none'
+                      hr
+                      dl
+                        dt id="result-answare#{plate}" Nie wybrano odpowiedzi
+                        dd id="result-description#{plate}" 
+                          p
+                            ul.pager
+                              li.back
+                                a id="result-back#{plate}" href='#'
+                                  i.icon-arrow-left
+                                  '  Wróć do tarczy #{plate}
+                  javascript:
+                    console.log($("#result-back#{plate}"))
+                    $("#result-back#{plate}").on('click', function() {
+                      nav_to("#{plate}")
+                    })
+
             .row
               .span12
                 hr
                 .alert.alert-success
-                  strong Dziekuje!
-                  p Dziękuje za skorzystanie z testu. Mam nadzieje że okazał się pomocny i nie wykazał żadnych problemów :)
+                  h4.alert-heading Dziekuje!
+                  p Dziękuje za skorzystanie z testu. Mam nadzieje że okazał się pomocny.
                 ul.pager
                   li
                     a href='tarcze_ishinary.html' 
