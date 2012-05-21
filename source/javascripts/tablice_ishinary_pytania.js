@@ -226,7 +226,7 @@
     },
   },
   {  // 20
-    'Wijący się szlaczek': {
+    'Wijący się zielony szlaczek': {
       'description': 'Ci którzy nie mają problemu z widzeniem kolorów powinni być w stanie prześledzić wijący się zielony szlaczek',
       'status': 'success'
     },
@@ -236,7 +236,7 @@
     },
   },
   {  // 21
-    'Wijący się szlaczek': {
+    'Wijący się pomarańczowy szlaczek': {
       'description': 'Ci którzy nie mają problemu z widzeniem kolorów powinni być w stanie prześledzić wijący się pomarańczowy szlaczek',
       'status': 'success'
     },
