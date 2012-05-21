@@ -28,9 +28,14 @@ html lang="pl"
             span.icon-bar
           == link_to 'EyeSight', 'index.html', class: 'brand'
           .nav-collapse
-            ul.nav
-              li.active
-                == link_to 'Testy wzroku', 'index.html'
+            - {'Testy wzroku' => 'index.html', 'Tarcze Ishihary' => 'tarcze_ishinary.html'}.each do |name, file|
+              ul.nav
+                - if request.path_info == file
+                  li.active
+                    == link_to name, file
+                - else
+                  li
+                    == link_to name, file
 
     .container
       header
