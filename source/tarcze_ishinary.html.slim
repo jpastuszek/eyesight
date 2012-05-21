@@ -11,15 +11,15 @@
       .row
         .span12
           ul.nav.nav-tabs
-            li.active
-              a data-toggle='tab' href='#plate-instruction' style='outline: 0' Instrukcja
+            li.active#tab-instruction
+              a data-toggle='tab' href='#pane-instruction' style='outline: 0' Instrukcja
             - (1..24).each do |plate|
-              li
-                a data-toggle='tab' href='#plate#{plate}' style='outline: 0' #{plate}
+              li id="tab-#{plate}"
+                a data-toggle='tab' href='#pane-#{plate}' style='outline: 0' #{plate}
             li
-              a data-toggle='tab' href='#plate-results' style='outline: 0' Wyniki
+              a#tab-results data-toggle='tab' href='#pane-results' style='outline: 0' Wyniki
       .row.tab-content
-        .tab-pane.active id="plate-instruction"
+        .tab-pane.active id="pane-instruction"
           .span12
             .row
               .span6
@@ -31,17 +31,23 @@
                 ol
                   li Siądź około 75 centymetrów od monitora, tak aby tarcze były na wysokości wzroku.
                   li Zalecamy delikatne naturalne oświetlenie pomieszczenia tak aby nie było odbić od ekranu. Nienaturalnie oświetlenie i odbicia mogą wpłynąć na kolory przedstawionych tarcz.
-                  li Przejdź do tarczy numer 1 i sprubuj zidentyfikować liczbę lub szlaczek w przeciągu 5 sekund, następnie kliknij na wybraną odpowiedź.
+                  li Przejdź do tarczy numer 1 i spróbuj zidentyfikować liczbę lub szlaczek w przeciągu 5 sekund, następnie kliknij na wybraną odpowiedź.
                   li Wybierz numer kolejnej tarczy i kontynuuj test aż do ostatniej tarczy.
                   li Przejdź do wyników gdy już zaznaczysz odpowiedzi dla wszystkich tarcz.
                 .alert.alert-info
                   strong Nawigacja
                   ul
-                    li Zawsze możesz wrócic do tej intrukcji, dowolnej tarczy i wyników
+                    li Zawsze możesz wrócić do tej instrukcji, dowolnej tarczy i wyników
                     li Przeładuj stronę aby rozpocząć od nowa
+                p
+                  ul.pager
+                    li.next
+                      a href='#'
+                        '  Start
+                        i.icon-arrow-right
 
         - (1..24).each do |plate|
-          .tab-pane id="plate#{plate}"
+          .tab-pane id="pane-#{plate}"
             .span4 &nbsp;
             .span4
               .thumbnail
@@ -50,20 +56,39 @@
                 hr
                 h5 Co widzisz?
                 ul.nav.nav-pills.nav-stacked.answares style="cursor: pointer"
+              p
+                ul.pager
+                  li.previous
+                    a href='#'
+                      i.icon-arrow-left
+                      - if plate == 1
+                        '  Instrukcja
+                      - else
+                        '  Poprzednia
+                  li.next
+                    a href='#' 
+                      - if plate == 24
+                        '  Wynik
+                      - else
+                        '  Następna
+                      i.icon-arrow-right
             .span4 &nbsp;
 
-        .tab-pane id="plate-results"
+        .tab-pane id="pane-results"
           .span12
             .row
               .span6
                 h3 O wynikach
-                p Poniżej pokazane są tarcze o widoczynch prawidłowych rozwiązaniach.
+                p Poniżej pokazane są tarcze o widocznych prawidłowych rozwiązaniach.
               .span6
                 h3 Kolory tarcz
                 ol
                   ul Tarcze zaznaczone na zielono zostały prawidłowo rozwiązane.
                   ul Tarcze zaznaczone na niebiesko zawierają opis problemu.
                   ul Tarcze nie zaznaczone kolorem nie mają zaznaczonych odpowiedzi, wroć do tych tarcz i zaznacz odpowiedź aby uzyskać wyniki.
+            .row
+              .span12
+                hr
             - (1..24).to_a.each_slice(4) do |row|
               ul.thumbnails.row
                 - row.each do |plate|
@@ -76,12 +101,51 @@
                         dl
                           dt id="result-answare#{plate}" Nie wybrano odpowiedzi
                           dd id="result-description#{plate}" Wróć do tarczy #{plate} i wybierz odpowiedź.
+            .row
+              .span12
+                hr
+                .alert.alert-success
+                  strong Dziekuje!
+                  p Dziękuje za skorzystanie z testu. Mam nadzieje że okazał się pomocny i nie wykazał żadnych problemów :)
+                ul.pager
+                  li
+                    a href='tarcze_ishinary.html' 
+                      i.icon-refresh
+                      |  Jeszcze raz!
 
+javascript:
+  // Navigation helper
+  function nav_to(tab) {
+    console.log('nave to: ' + tab)
+    /*
+    console.log($(".tab-pane"))
+    console.log($(".nav-tabs li"))
+
+    console.log($("#tab-" + tab))
+    console.log($("#pane-" + tab))
+    */
+
+    $(".tab-pane").removeClass('active')
+    $(".nav-tabs li").removeClass('active')
+
+    $("#tab-" + tab).addClass('active')
+    $("#pane-" + tab).addClass('active')
+  }
+
+  // Navigation (insruction, results)
+  $("#pane-instruction .pager .next a").on('click', function() {
+    nav_to('1')
+  })
+  $("#pane-results .pager .previous a").on('click', function() {
+    nav_to('24')
+  })
+
+// Generate JS for each plate
 - (1..24).each do |plate|
   javascript:
     $(document).ready(function() {
       // Setting up answares
-      var question_list = $("#plate#{plate} .answares")
+      var question_list = $("#pane-#{plate} .answares")
       var answare_set = answares[#{plate-1}]
 
       for (var question in answare_set) {
@@ -89,8 +153,8 @@
       }
 
       // Selecting answares
-      $("#plate#{plate} .answares a").on('click', function() {
-        $("#plate#{plate} .answares li").removeClass('active')
+      $("#pane-#{plate} .answares a").on('click', function() {
+        $("#pane-#{plate} .answares li").removeClass('active')
         $(this).parent('li').addClass('active')
 
         var answare = $(this).text()
@@ -110,7 +174,24 @@
         $("#result-image#{plate}").hide();
         $("#result-image-answare#{plate}").show();
       })
+
+      // Navigation
+      $("#pane-#{plate} .pager .next a").on('click', function() {
+        var next = #{plate} + 1
+        if (next > 24)
+          nav_to('results')
+        else
+          nav_to(next)
+      })
+
+      $("#pane-#{plate} .pager .previous a").on('click', function() {
+        var prev = #{plate} - 1
+        if (prev < 1)
+          nav_to('instruction')
+        else
+          nav_to(prev)
+      })
     });
 
-== javascript_include_tag 'tablice_ishinary_pytania'
+== javascript_include_tag 'tarcze_ishinary_pytania'
 
