@@ -6,107 +6,106 @@
   a href='http://www.colour-blindness.com/colour-blindness-tests/ishihara-colour-test-plates/' Colour-Blindness.com
 
 .row
-  .span6
-    h3 O teście
-    p Tarcze 1 - 17 zawierają liczby, tarcze 18 - 24 zawierają jeden lub dwa szlaczki.
-    p By zdać każdy z testów musisz prawidłowo zidentyfikować liczbę lub prześledzić szlaczki.
-  .span6
-    h3 Instrukcja
-    ol
-      li Siądź około 75 centymetrów od monitora, tak aby tarcze były na wysokości wzroku.
-      li Zalecamy delikatne naturalne oświetlenie pomieszczenia tak aby nie było odbić od ekranu. Nienaturalnie oświetlenie i odbicia mogą wpłynąć na kolory przedstawionych tarcz.
-      li Sprubuj zidentyfikować liczbę lub szlaczek w przeciągu 5 sekund, następnie kliknij na wybraną odpowiedź.
-      li Wybierz numer kolejnej tarczy i kontynuuj test aż do ostatniej tarczy.
-      li Przejdź do wyników gdy już zaznaczysz odpowiedzi dla wszystkich tarcz.
-
-.row
-  .span16#plates
-    - (1..24).each do |plate|
-      javascript:
-        $(document).ready(function() {
-          // Centering view on the shown plate
-          $("#plate#{plate}").on('shown', function() {
-            $('html, body').animate({
-              scrollTop: $("#plate#{plate}").offset().top - 140
-            }, 200);
-          });
-
-          // Setting up answares
-          var question_list = $("#plate#{plate} .answares")
-          var answare_set = answares[#{plate-1}]
-
-          for (var question in answare_set) {
-            question_list.append("<li><a>" + question)
-          }
-
-          // Selecting answares
-          $("#plate#{plate} .answares a").on('click', function() {
-            $("#plate#{plate} .answares li").removeClass('active')
-            $(this).parent('li').addClass('active')
-
-            var answare = $(this).text()
-            var description = answare_set[answare].description
-            var status =  answare_set[answare].status
-
-            $("#result-answare#{plate}").contents().remove()
-            $("#result-answare#{plate}").append("Widiałeś: " + answare)
-
-            $("#result-description#{plate}").contents().remove()
-            $("#result-description#{plate}").append(description)
-
-            $("#result#{plate}").removeClass("alert alert-error alert-success alert-info")
-            if (status == 'error' || status == 'success' || status == 'info')
-              $("#result#{plate}").addClass("alert alert-" + status)
-
-            $("#result-image#{plate}").hide();
-            $("#result-image-answare#{plate}").show();
-          })
-        });
-
+  .span12
+    .tabbable#plates
       .row
         .span12
-          hr
-          a.accordion-toggle data-toggle='collapse' data-parent='#plates' href='#plate#{plate}' style='outline: 0'
-            h2 Tarcza #{plate}
-      .row.collapse id="plate#{plate}"
-        .span4 &nbsp;
-        .span4
-          .thumbnail
-            == image_tag "ishinary/plate#{plate}.gif"
-            hr
-            h5 Co widzisz?
-            ul.nav.nav-pills.nav-stacked.answares style="cursor: pointer"
-        .span4 &nbsp;
+          ul.nav.nav-tabs
+            li.active
+              a data-toggle='tab' href='#plate-instruction' style='outline: 0' Instrukcja
+            - (1..24).each do |plate|
+              li
+                a data-toggle='tab' href='#plate#{plate}' style='outline: 0' #{plate}
+            li
+              a data-toggle='tab' href='#plate-results' style='outline: 0' Wyniki
+      .row.tab-content
+        .tab-pane.active id="plate-instruction"
+          .span12
+            .row
+              .span6
+                h3 O teście
+                p Tarcze 1 - 17 zawierają liczby, tarcze 18 - 24 zawierają jeden lub dwa szlaczki.
+                p By zdać każdy z testów musisz prawidłowo zidentyfikować liczbę lub prześledzić szlaczki.
+              .span6
+                h3 Instrukcja
+                ol
+                  li Siądź około 75 centymetrów od monitora, tak aby tarcze były na wysokości wzroku.
+                  li Zalecamy delikatne naturalne oświetlenie pomieszczenia tak aby nie było odbić od ekranu. Nienaturalnie oświetlenie i odbicia mogą wpłynąć na kolory przedstawionych tarcz.
+                  li Sprubuj zidentyfikować liczbę lub szlaczek w przeciągu 5 sekund, następnie kliknij na wybraną odpowiedź.
+                  li Wybierz numer kolejnej tarczy i kontynuuj test aż do ostatniej tarczy.
+                  li Przejdź do wyników gdy już zaznaczysz odpowiedzi dla wszystkich tarcz.
 
-    .row
-      .span12
-        hr
-        a.accordion-toggle data-toggle='collapse' data-parent='#plates' href='#plate-results' style='outline: 0'
-          h2 Wyniki
-    .row.collapse id="plate-results"
-      .span12
-        .row
-          .span6
-            h3 O wynikach
-            p Poniżej pokazane są tarcze o widoczynch prawidłowych rozwiązaniach.
-          .span6
-            h3 Kolory tarcz
-            ol
-              ul Tarcze zaznaczone na zielono zostały prawidłowo rozwiązane.
-              ul Tarcze zaznaczone na niebiesko zawierają opis problemu.
-              ul Tarcze nie zaznaczone kolorem nie mają zaznaczonych odpowiedzi, wroć do tych tarcz i zaznacz odpowiedź aby uzyskać wyniki.
-        - (1..24).to_a.each_slice(4) do |row|
-          ul.thumbnails.row
-            - row.each do |plate|
-                li.span3
-                  .thumbnail id="result#{plate}"
-                    h5 Tarcza #{plate}
-                    == image_tag "ishinary/plate#{plate}.gif", id: "result-image#{plate}"
-                    == image_tag "ishinary/plate#{plate}a.gif", id: "result-image-answare#{plate}", style: 'display: none'
-                    hr
-                    dl
-                      dt id="result-answare#{plate}" Nie wybrano odpowiedzi
-                      dd id="result-description#{plate}" Wróć do tarczy #{plate} i wybierz odpowiedź.
+        - (1..24).each do |plate|
+          .tab-pane id="plate#{plate}"
+            .span4 &nbsp;
+            .span4
+              .thumbnail
+                h5 Tarcza #{plate}
+                == image_tag "ishinary/plate#{plate}.gif"
+                hr
+                h5 Co widzisz?
+                ul.nav.nav-pills.nav-stacked.answares style="cursor: pointer"
+            .span4 &nbsp;
+
+        .tab-pane id="plate-results"
+          .span12
+            .row
+              .span6
+                h3 O wynikach
+                p Poniżej pokazane są tarcze o widoczynch prawidłowych rozwiązaniach.
+              .span6
+                h3 Kolory tarcz
+                ol
+                  ul Tarcze zaznaczone na zielono zostały prawidłowo rozwiązane.
+                  ul Tarcze zaznaczone na niebiesko zawierają opis problemu.
+                  ul Tarcze nie zaznaczone kolorem nie mają zaznaczonych odpowiedzi, wroć do tych tarcz i zaznacz odpowiedź aby uzyskać wyniki.
+            - (1..24).to_a.each_slice(4) do |row|
+              ul.thumbnails.row
+                - row.each do |plate|
+                    li.span3
+                      .thumbnail id="result#{plate}"
+                        h5 Tarcza #{plate}
+                        == image_tag "ishinary/plate#{plate}.gif", id: "result-image#{plate}"
+                        == image_tag "ishinary/plate#{plate}a.gif", id: "result-image-answare#{plate}", style: 'display: none'
+                        hr
+                        dl
+                          dt id="result-answare#{plate}" Nie wybrano odpowiedzi
+                          dd id="result-description#{plate}" Wróć do tarczy #{plate} i wybierz odpowiedź.
+
+- (1..24).each do |plate|
+  javascript:
+    $(document).ready(function() {
+      // Setting up answares
+      var question_list = $("#plate#{plate} .answares")
+      var answare_set = answares[#{plate-1}]
+
+      for (var question in answare_set) {
+        question_list.append("<li><a>" + question)
+      }
+
+      // Selecting answares
+      $("#plate#{plate} .answares a").on('click', function() {
+        $("#plate#{plate} .answares li").removeClass('active')
+        $(this).parent('li').addClass('active')
+
+        var answare = $(this).text()
+        var description = answare_set[answare].description
+        var status =  answare_set[answare].status
+
+        $("#result-answare#{plate}").contents().remove()
+        $("#result-answare#{plate}").append("Widiałeś: " + answare)
+
+        $("#result-description#{plate}").contents().remove()
+        $("#result-description#{plate}").append(description)
+
+        $("#result#{plate}").removeClass("alert alert-error alert-success alert-info")
+        if (status == 'error' || status == 'success' || status == 'info')
+          $("#result#{plate}").addClass("alert alert-" + status)
+
+        $("#result-image#{plate}").hide();
+        $("#result-image-answare#{plate}").show();
+      })
+    });
 
 == javascript_include_tag 'tablice_ishinary_pytania'
 
