@@ -92,7 +92,7 @@
                 == image_tag "ishinary/plate#{plate}.gif"
                 hr
                 h5 Co widzisz?
-                ul.nav.nav-pills.nav-stacked.answares style="cursor: pointer"
+                ul.nav.nav-pills.nav-stacked#answares style="cursor: pointer"
               p
                 ul.pager
                   li.previous
@@ -172,6 +172,27 @@
                         |  Jeszcze raz!
 
 javascript:
+  // Shuffle pulugin from: http://www.yelotofu.com/2008/08/jquery-shuffle-plugin/
+  (function($){
+    $.fn.shuffle = function() {
+      return this.each(function(){
+        var items = $(this).children();
+        return (items.length)
+          ? $(this).html($.shuffle(items))
+          : this;
+      });
+    }
+   
+    $.shuffle = function(arr) {
+      for(
+        var j, x, i = arr.length; i;
+        j = parseInt(Math.random() * i),
+        x = arr[--i], arr[i] = arr[j], arr[j] = x
+      );
+      return arr;
+    }
+  })(jQuery);
+
   // Navigation helper
   function nav_to(tab) {
     $(".tab-pane").removeClass('active')
@@ -194,16 +215,19 @@ javascript:
   javascript:
     $(document).ready(function() {
       // Setting up answares
-      var question_list = $("#pane-#{plate} .answares")
+      var question_list = $("#pane-#{plate} #answares")
       var answare_set = answares[#{plate-1}]
 
       for (var question in answare_set) {
         question_list.append("<li><a>" + question)
       }
 
+      // Shuffle
+      question_list.shuffle()
+
       // Selecting answares
-      $("#pane-#{plate} .answares a").on('click', function() {
-        $("#pane-#{plate} .answares li").removeClass('active')
+      $("#pane-#{plate} #answares a").on('click', function() {
+        $("#pane-#{plate} #answares li").removeClass('active')
         $(this).parent('li').addClass('active')
 
         var answare = $(this).text()
