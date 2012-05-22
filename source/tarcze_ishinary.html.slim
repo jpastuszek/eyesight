@@ -24,25 +24,62 @@
             .row
               .span6
                 h3 O teście
-                p Tarcze 1 - 17 zawierają liczby, tarcze 18 - 24 zawierają jeden lub dwa szlaczki.
-                p By zdać każdy z testów musisz prawidłowo zidentyfikować liczbę lub prześledzić szlaczki.
+                ul.unstyled
+                  li
+                    i.icon-play-circle
+                    |  Tarcze 1 - 17 zawierają liczby, tarcze 18 - 24 zawierają jeden lub dwa szlaczki.
+                  li 
+                    i.icon-ok-circle
+                    |  By zdać każdy z testów musisz prawidłowo zidentyfikować liczbę lub prześledzić szlaczki.
+                  li 
+                    i.icon-time
+                    |  Potrzebujesz 
+                    strong około 5 minut 
+                    | na skończenie tego testu.
               .span6
                 h3 Instrukcja
                 ol
-                  li Siądź około 75 centymetrów od monitora, tak aby tarcze były na wysokości wzroku.
-                  li Zalecamy delikatne naturalne oświetlenie pomieszczenia tak aby nie było odbić od ekranu. Nienaturalnie oświetlenie i odbicia mogą wpłynąć na kolory przedstawionych tarcz.
-                  li Przejdź do tarczy numer 1 i spróbuj zidentyfikować liczbę lub szlaczek w przeciągu 5 sekund, następnie kliknij na wybraną odpowiedź.
-                  li Wybierz numer kolejnej tarczy i kontynuuj test aż do ostatniej tarczy.
-                  li Przejdź do wyników gdy już zaznaczysz odpowiedzi dla wszystkich tarcz.
+                  li 
+                    | Siądź około 
+                    strong 75 centymetrów od monitora
+                    | , tak aby tarcze były 
+                    strong na wysokości wzroku
+                    | .
+                  li 
+                    | Zalecamy delikatne 
+                    strong naturalne oświetlenie pomieszczenia
+                    |  tak aby 
+                    strong nie było odbić
+                    |  od ekranu. Nienaturalnie oświetlenie i odbicia mogą wpłynąć na kolory przedstawionych tarcz.
+                  li 
+                    | Kliknij 
+                    strong Start 
+                    |  by przejść do tarczy numer 1 i spróbuj 
+                    strong zidentyfikować liczbę lub szlaczek w przeciągu 5 sekund
+                    | , następnie kliknij na wybraną odpowiedź.
+                  li 
+                    | Kliknij 
+                    strong Następny 
+                    |  by przejść do kolejnej tarczy i kontynuuj test aż do ostatniej tarczy.
+                  li 
+                    | Przejdź do wyników 
+                    strong gdy już zaznaczysz odpowiedzi dla wszystkich tarcz
+                    | .
                 .alert.alert-info
                   h4.alert-heading Nawigacja
                   ul
-                    li Zawsze możesz wrócić do tej instrukcji, dowolnej tarczy i wyników
-                    li Przeładuj stronę aby rozpocząć od nowa
+                    li 
+                      strong Zawsze możesz wrócić 
+                      | do tej instrukcji, dowolnej tarczy i wyników
+                    li 
+                      | Aby rozpocząć od nowa przeładuj stronę lub kliknij 
+                      strong Jeszcze raz
+                      |  na koncu strony z wynikami.
+
                 p
                   ul.pager
                     li.next
-                      a href='#'
+                      a.btn-info href='#'
                         '  Start
                         i.icon-arrow-right
 
@@ -82,16 +119,16 @@
                 p Znajdujące się poniżej tarcze ukazują prawidłowy wzór jaki powinna widzieć osoba bez problemów z widzeniem kolorów.
               .span6
                 h3 Oznaczenia
-                ol
-                  ul 
+                ul.unstyled
+                  li
                     i.icon-ok
                     '  Tarcze prawidłowo rozpoznane
-                  ul 
-                    i.icon-remove
+                  li
+                    i.icon-warning-sign
                     '  Tarcze nieprawidłowo rozpoznane - zawierają opis problemu
-                  ul 
+                  li
                     i.icon-repeat
-                    '  Tarcze bez zaznaczonej odpowiedzi
+                    '  Tarcze bez zaznaczonej odpowiedzi - wróć do tarczy i zaznacz odpowiedź
             .row
               .span12
                 hr
@@ -109,7 +146,7 @@
                           i.icon-repeat id="result-icon#{plate}"
                           ' &nbsp;
                           span id="result-answare#{plate}" 
-                            '  Nie wybrano odpowiedzi
+                            ' Nie wybrano odpowiedzi
                         dd id="result-description#{plate}" 
                           p
                             ul.pager
@@ -125,14 +162,14 @@
             .row
               .span12
                 hr
-                .alert.alert-success
-                  h4.alert-heading Dziekuje!
+                .well
+                  h4.alert-heading Dziękuje!
                   p Dziękuje za skorzystanie z testu. Mam nadzieje że okazał się pomocny.
-                ul.pager
-                  li
-                    a href='tarcze_ishinary.html' 
-                      i.icon-refresh
-                      |  Jeszcze raz!
+                  ul.pager
+                    li
+                      a.btn-info href='tarcze_ishinary.html' 
+                        i.icon-refresh
+                        |  Jeszcze raz!
 
 javascript:
   // Navigation helper
@@ -179,11 +216,11 @@ javascript:
         $("#result-description#{plate}").contents().remove()
         $("#result-description#{plate}").append(description)
 
-        $("#result-icon#{plate}").removeClass('icon-repeat icon-ok icon-remove')
+        $("#result-icon#{plate}").removeClass('icon-repeat icon-ok icon-warning-sign')
         if (status == 'success')
           $("#result-icon#{plate}").addClass('icon-ok')
         if (status == 'error' || status == 'info')
-          $("#result-icon#{plate}").addClass('icon-remove')
+          $("#result-icon#{plate}").addClass('icon-warning-sign')
 
         $("#result#{plate}").removeClass("alert alert-error alert-success alert-info")
         if (status == 'error' || status == 'success' || status == 'info') {
