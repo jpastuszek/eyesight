@@ -1,0 +1,141 @@
+- content_for :title do
+  h1 Test Amslera
+
+.row
+  .span
+    .tabbable
+      .row
+        .span12
+          ul.nav.nav-tabs
+            li.active#tab-instruction
+              a data-toggle='tab' href='#pane-instruction' style='outline: 0' Instrukcja
+            li#tab-grid
+              a data-toggle='tab' href='#pane-grid' style='outline: 0' Siatka Amslera
+            li#tab-results
+              a data-toggle='tab' href='#pane-results' style='outline: 0' Wyniki
+      .row.tab-content
+        .tab-pane.active id="pane-instruction"
+          .span12
+            .row
+              .span6
+                h3 O teście
+                ul.unstyled
+                  li
+                    i.icon-play-circle
+                    |  Test ten polega na badaniu zniekształceń widzianej siatki.
+                  li
+                    i.icon-ok-circle
+                    |  Prawidłowo widząca osoba powinna widzieć proste pionowe i poziome linie rozłożone w równych odstępach.
+                  li
+                    i.icon-time
+                    |  Potrzebujesz 
+                    strong około 1 minuty  
+                    | na skończenie tego testu.
+              .span6
+                h3 Instrukcja
+                ol
+                  li
+                    | Jeśli korzystasz z okularów do czytania - 
+                    strong załóż je
+                    | .
+                  li 
+                    | Siądź około 
+                    strong 30 centymetrów od monitora
+                    | , tak aby widziana sietka była 
+                    strong na wysokości wzroku
+                    | .
+                  li
+                    strong Zasłoń jedno oko
+                    | , drugim patrz w 
+                    strong centralny punkt siatki
+                    | .
+                  li
+                    | Koncentruj wzrok tylko i wyłącznie na 
+                    strong środkowym punkcie
+                    | .
+                  li 
+                    | Oceń czy wszystkie linie, które widzisz 
+                    strong pozostają liniami prostymi
+                    | , czy wszystkie kwadraty 
+                    strong mają taki sam wymiar
+                    | .
+                  li
+                    | Wykonaj test 
+                    strong dla każdego oka oddzielnie
+                    | .
+
+                .alert.alert-info
+                  h4.alert-heading Nawigacja
+                  ul
+                    li 
+                      strong Zawsze możesz wrócić 
+                      | do tej instrukcji, testu i wyników.
+
+                p
+                  ul.pager
+                    li.next
+                      a.btn-info href='#'
+                        '  Start
+                        i.icon-arrow-right
+
+        .tab-pane id="pane-grid"
+          .span12
+            .row
+              .span2 &nbsp;
+              .span8
+                .thumbnail
+                  == image_tag 'amsler_grid.png'
+
+                p
+                  ul.pager
+                    li.previous
+                      a href='#'
+                        i.icon-arrow-left
+                        '  Instrukcja
+                    li.next
+                      a href='#' 
+                        '  Wynik
+                        i.icon-arrow-right
+                .span2 &nbsp;
+
+        .tab-pane id="pane-results"
+          .span2 &nbsp;
+          .span8
+            .thumbnail
+              h5 Siatka Amslera
+              == image_tag 'amsler_grid_problem.png'
+
+            p
+              ul.pager
+                li
+                  a.btn-info href='test_amslera.html' 
+                    i.icon-refresh
+                    |  Jeszcze raz!
+          .span2 &nbsp;
+
+javascript:
+  // Navigation helper
+  function nav_to(tab) {
+    $(".tab-pane").removeClass('active')
+    $(".nav-tabs li").removeClass('active')
+
+    $("#tab-" + tab).addClass('active')
+    $("#pane-" + tab).addClass('active')
+  }
+
+  // Navigation
+  $("#pane-instruction .pager .next a").on('click', function() {
+    nav_to('grid')
+  })
+
+  $("#pane-grid .pager .next a").on('click', function() {
+    nav_to('results')
+  })
+  $("#pane-grid .pager .previous a").on('click', function() {
+    nav_to('instruction')
+  })
+
+  $("#pane-results .pager .previous a").on('click', function() {
+    nav_to('grid')
+  })
+
