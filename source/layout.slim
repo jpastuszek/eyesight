@@ -26,7 +26,10 @@ html lang="pl"
         .container
           a.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse"
             span.icon-bar
-          == link_to 'EyeSight', 'index.html', class: 'brand'
+          a href='index.html'
+            == image_tag 'eye_icon.png', class: 'pull-left', style: 'padding-top: 6px'
+          a.brand href='index.html'
+            ' EyeSight
           .nav-collapse
             - {'Testy wzroku' => 'index.html', 'Tarcze Ishihary' => 'tarcze_ishinary.html', 'Test Amslera' => 'test_amslera.html'}.each do |name, file|
               ul.nav
