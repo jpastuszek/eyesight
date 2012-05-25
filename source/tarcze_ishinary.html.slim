@@ -79,8 +79,9 @@
                 p
                   ul.pager
                     li.next
-                      a.btn-info href='#'
-                        '  Start
+                      a href='#'
+                        strong
+                          '  Start
                         i.icon-arrow-right
 
         - (1..24).each do |plate|
@@ -104,10 +105,11 @@
                         '  Poprzednia
                   li.next
                     a href='#' 
-                      - if plate == 24
-                        '  Wyniki
-                      - else
-                        '  Następna
+                      strong
+                        - if plate == 24
+                          '  Wyniki
+                        - else
+                          '  Następna
                       i.icon-arrow-right
             .span4 &nbsp;
 
@@ -169,9 +171,10 @@
                     li Pamiętaj że ten test nie może zastąpić profesjonalnych badań.
                 ul.pager
                   li
-                    a.btn-info href='tarcze_ishinary.html' 
+                    a href='tarcze_ishinary.html' 
                       i.icon-refresh
-                      |  Jeszcze raz!
+                      strong
+                        '  Jeszcze raz!
 
 javascript:
   // Shuffle pulugin from: http://www.yelotofu.com/2008/08/jquery-shuffle-plugin/
