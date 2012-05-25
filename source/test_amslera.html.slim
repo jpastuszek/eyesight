@@ -22,7 +22,7 @@
                 ul.unstyled
                   li
                     i.icon-play-circle
-                    |  Test ten polega na badaniu zniekształceń widzianej siatki.
+                    |  Ten test polega na obserwacji zniekształceń widzianej siatki.
                   li
                     i.icon-ok-circle
                     |  Prawidłowo widząca osoba powinna widzieć proste pionowe i poziome linie rozłożone w równych odstępach.
@@ -35,7 +35,7 @@
                 h3 Instrukcja
                 ol
                   li
-                    | Jeśli korzystasz z okularów do czytania - 
+                    | Jeżeli korzystasz z okularów do czytania - 
                     strong załóż je
                     | .
                   li 
@@ -99,19 +99,40 @@
                 .span2 &nbsp;
 
         .tab-pane id="pane-results"
-          .span2 &nbsp;
-          .span8
-            .thumbnail
-              h5 Siatka Amslera
-              == image_tag 'amsler_grid_problem.png'
+          .span12
+            .row
+              .span8
+                h3 Wyniki badania
+                p Zniekształcona siatka przedstawiona po prawej ukazuje przykładowy obraz jaki może widzieć osoba z zwyrodnieniem śatkówki lub problemem z nerwem wzrokowym.
+                ul.unstyled
+                  li
+                    i.icon-ok 
+                    |  Jeżeli widziałeś równoległe linie oznaczające kwadraty o takich samych wymiarach to nie masz opisanego probelmu.
+                  li
+                    i.icon-warning-sign 
+                    |  Jeżeli widziałeś siatkę zniekształconą w podobny sposób jak przedstawiono po prawej to prawdopodobnie masz zwyrodnienie satkówki lub problem z nerwem wzrokowym.
 
-            p
-              ul.pager
-                li
-                  a.btn-info href='test_amslera.html' 
-                    i.icon-refresh
-                    |  Jeszcze raz!
-          .span2 &nbsp;
+                hr
+                .well
+                  h4.alert-heading Dziękuje!
+                  ul.unstyled
+                    li Dziękuje za skorzystanie z testu. Mam nadzieje że okazał się pomocny.
+                    li Jeżeli wykazał jakieś problemy to skontaktuj się z okulistą.
+                    li Pamiętaj że ten test nie może zastąpić profesjonalnych badań.
+
+                p
+                  ul.pager
+                    li.previous
+                      a href='#'
+                        i.icon-arrow-left
+                        '  Siatka Amslera
+                    li.next
+                      a.btn-info href='test_amslera.html' 
+                        i.icon-refresh
+                        |  Jeszcze raz!
+              .span4
+                .thumbnail
+                  == image_tag 'amsler_grid_problem.png'
 
 javascript:
   // Navigation helper
