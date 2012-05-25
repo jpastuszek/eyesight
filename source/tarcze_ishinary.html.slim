@@ -30,7 +30,7 @@
                     |  Tarcze 1 - 17 zawierają liczby, tarcze 18 - 24 zawierają jeden lub dwa szlaczki.
                   li 
                     i.icon-ok-circle
-                    |  By zdać każdy z testów musisz prawidłowo zidentyfikować liczbę lub prześledzić szlaczki.
+                    |  Prowidłowo widząca osoba powinna być w stanie zidentyfikować liczbę lub prześledzić szlaczki na każdej tarczy.
                   li 
                     i.icon-time
                     |  Potrzebujesz 
@@ -105,7 +105,7 @@
                   li.next
                     a href='#' 
                       - if plate == 24
-                        '  Wynik
+                        '  Wyniki
                       - else
                         '  Następna
                       i.icon-arrow-right
@@ -115,7 +115,7 @@
           .span12
             .row
               .span6
-                h3 Wynik badania
+                h3 Wyniki badania
                 p Znajdujące się poniżej tarcze ukazują prawidłowy wzór jaki powinna widzieć osoba bez problemów z widzeniem kolorów.
               .span6
                 h3 Oznaczenia
@@ -161,15 +161,17 @@
 
             .row
               .span12
-                hr
                 .well
                   h4.alert-heading Dziękuje!
-                  p Dziękuje za skorzystanie z testu. Mam nadzieje że okazał się pomocny.
-                  ul.pager
-                    li
-                      a.btn-info href='tarcze_ishinary.html' 
-                        i.icon-refresh
-                        |  Jeszcze raz!
+                  ul.unstyled
+                    li Dziękuje za skorzystanie z testu. Mam nadzieje że okazał się pomocny.
+                    li Jeżeli wykazał jakieś problemy to skontaktuj się z okulistą.
+                    li Pamiętaj że ten test nie może zastąpić profesjonalnych badań.
+                ul.pager
+                  li
+                    a.btn-info href='tarcze_ishinary.html' 
+                      i.icon-refresh
+                      |  Jeszcze raz!
 
 javascript:
   // Shuffle pulugin from: http://www.yelotofu.com/2008/08/jquery-shuffle-plugin/
