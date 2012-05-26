@@ -31,7 +31,7 @@ html lang="pl"
           a.brand href='index.html'
             ' EyeSight
           .nav-collapse
-            - {'Testy wzroku' => 'index.html', 'Tarcze Ishihary' => 'tarcze_ishinary.html', 'Test Amslera' => 'test_amslera.html'}.each do |name, file|
+            - {'Testy wzroku' => 'index.html', 'Tarcze Ishihary' => 'tarcze_ishinary.html', 'Test Amslera' => 'test_amslera.html', 'Test czerwono - zielony' => 'redgreen.html'}.each do |name, file|
               ul.nav
                 - if request.path_info == file
                   li.active

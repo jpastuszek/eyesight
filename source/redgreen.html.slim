@@ -1,0 +1,168 @@
+- content_for :title do
+  h1 Test czerwono - zielony
+
+.row
+  .span
+    .tabbable
+      .row
+        .span12
+          ul.nav.nav-tabs
+            li.active#tab-instruction
+              a data-toggle='tab' href='#pane-instruction' style='outline: 0' Instrukcja
+            li#tab-grid
+              a data-toggle='tab' href='#pane-grid' style='outline: 0' Plansza czerwono - zielona
+            li#tab-results
+              a data-toggle='tab' href='#pane-results' style='outline: 0' Wynik
+      .row.tab-content
+        .tab-pane.active id="pane-instruction"
+          .span12
+            .row
+              .span6
+                h3 O teście
+                ul.unstyled
+                  li
+                    i.icon-play-circle
+                    |  Ten test polega na obserwacji czarności wzorów na tle zielonym i czerwonym.
+                  li
+                    i.icon-ok-circle
+                    |  Prawidłowo widząca osoba powinna widzieć wzory na tle zielonym tak samo czarne jak wzory na tle czerwonym.
+                  li
+                    i.icon-time
+                    |  Potrzebujesz 
+                    strong około 1 minuty  
+                    | na skończenie tego testu.
+              .span6
+                h3 Instrukcja
+                ol
+                  li
+                    | Jeżeli korzystasz z okularów do czytania - 
+                    strong załóż je
+                    |  aby sprawdzić prawidłowość ich korekcji.
+                  li
+                    | Zalecane jest 
+                    strong słabo oświetlone pomieszczenie
+                    | .
+                  li
+                    | Ustaw plansze by była na 
+                    strong środku monitora
+                    | .
+                  li 
+                    | Ustań w odległości 
+                    strong 5 - 6 metrów od monitora
+                    | .
+                  li
+                    strong Zasłoń jedno oko
+                    | .
+                  li
+                    | Patrząc na plansze zaobserwuj na którym tle znaki są 
+                    strong bardziej czarne
+                    | .
+                  li
+                    | Wykonaj test 
+                    strong dla każdego oka oddzielnie
+                    | .
+
+                .alert.alert-info
+                  h4.alert-heading Nawigacja
+                  ul
+                    li 
+                      strong Zawsze możesz wrócić 
+                      | do tej instrukcji, testu i wyników.
+
+                p
+                  ul.pager
+                    li.next
+                      a href='#'
+                        strong 
+                          '  Start
+                        i.icon-arrow-right
+
+        .tab-pane id="pane-grid"
+          .span12
+            .row
+              .span12
+                .thumbnail
+                  == image_tag 'redgreen.png'
+
+                p
+                  ul.pager
+                    li.previous
+                      a href='#'
+                        i.icon-arrow-left
+                        '  Instrukcja
+                    li.next
+                      a href='#' 
+                        strong
+                          '  Wynik
+                        i.icon-arrow-right
+
+        .tab-pane id="pane-results"
+          .span12
+            .row
+              .span8
+                h3 Wynik badania
+                p Kolor czerwony skupia się w innym punkcie oka niż kolor zielony.
+                ul.unstyled
+                  li
+                    i.icon-ok 
+                    |  Prawidłowo widząca osoba widzi znaki na czerwonym i zielonym tle tak samo czarne.
+                  li
+                    i.icon-warning-sign 
+                    |  Jeżeli widziałeś znaki na tle czerwonym bardziej czarne niż na tle zielonym potrzebna jest ujemna korekcja. Jeżeli widziałeś znaki na tle zielonym bardziej niż czerwonym potrzebna jest dodatnia korekcja.
+
+                hr
+                .well
+                  h4.alert-heading Dziękuje!
+                  ul.unstyled
+                    li Dziękuje za skorzystanie z testu. Mam nadzieje że okazał się pomocny.
+                    li Jeżeli wykazał jakieś problemy to skontaktuj się z okulistą.
+                    li Pamiętaj że ten test nie może zastąpić profesjonalnych badań.
+
+                p
+                  ul.pager
+                    li.previous
+                      a href='#'
+                        i.icon-arrow-left
+                        '  Plansza czerwono - zielona
+                    li.next
+                      a href='redgreen.html' 
+                        i.icon-refresh
+                        strong
+                          '  Jeszcze raz!
+              .span4
+                .row
+                  .span4
+                    .thumbnail
+                      == image_tag 'redgreen_results.png'
+                .row
+                  .span4
+                    .thumbnail
+                      == image_tag 'redgreen_results2.png'
+
+javascript:
+  // Navigation helper
+  function nav_to(tab) {
+    $(".tab-pane").removeClass('active')
+    $(".nav-tabs li").removeClass('active')
+
+    $("#tab-" + tab).addClass('active')
+    $("#pane-" + tab).addClass('active')
+  }
+
+  // Navigation
+  $("#pane-instruction .pager .next a").on('click', function() {
+    nav_to('grid')
+  })
+
+  $("#pane-grid .pager .next a").on('click', function() {
+    nav_to('results')
+  })
+  $("#pane-grid .pager .previous a").on('click', function() {
+    nav_to('instruction')
+  })
+
+  $("#pane-results .pager .previous a").on('click', function() {
+    nav_to('grid')
+  })
+
+
